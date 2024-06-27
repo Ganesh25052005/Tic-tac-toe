@@ -6,14 +6,12 @@ using namespace std;
 #define COMPUTER 1 
 #define HUMAN 2 
 
-#define SIDE 3 // Length of the board 
+#define SIDE 3  
 
-// Computer will move with 'O' 
-// and human with 'X' 
 #define COMPUTERMOVE 'O' 
 #define HUMANMOVE 'X' 
 
-// A function to show the current board status 
+
 void showBoard(char board[][SIDE]) 
 { 
 	
@@ -24,7 +22,7 @@ void showBoard(char board[][SIDE])
 	printf("\t\t\t %c | %c | %c \n\n", board[2][0], board[2][1], board[2][2]);  
 } 
 
-// A function to show the instructions 
+
 void showInstructions() 
 { 
 	printf("\nChoose a cell numbered from 1 to 9 as below and play\n\n"); 
@@ -37,10 +35,10 @@ void showInstructions()
 } 
 
 
-// A function to initialise the game 
+
 void initialise(char board[][SIDE]) 
 {	
-	// Initially the board is empty 
+	
 	for (int i=0; i<SIDE; i++) 
 	{ 
 		for (int j=0; j<SIDE; j++) 
@@ -48,7 +46,7 @@ void initialise(char board[][SIDE])
 	} 
 } 
 
-// A function to declare the winner of the game 
+
 void declareWinner(int whoseTurn) 
 { 
 	if (whoseTurn == COMPUTER) 
@@ -57,8 +55,7 @@ void declareWinner(int whoseTurn)
 		printf("HUMAN has won\n"); 
 } 
 
-// A function that returns true if any of the row 
-// is crossed with the same player's move 
+
 bool rowCrossed(char board[][SIDE]) 
 { 
 	for (int i=0; i<SIDE; i++) 
@@ -71,8 +68,6 @@ bool rowCrossed(char board[][SIDE])
 	return(false); 
 } 
 
-// A function that returns true if any of the column 
-// is crossed with the same player's move 
 bool columnCrossed(char board[][SIDE]) 
 { 
 	for (int i=0; i<SIDE; i++) 
@@ -85,8 +80,6 @@ bool columnCrossed(char board[][SIDE])
 	return(false); 
 } 
 
-// A function that returns true if any of the diagonal 
-// is crossed with the same player's move 
 bool diagonalCrossed(char board[][SIDE]) 
 { 
 	if (board[0][0] == board[1][1] && 
@@ -102,14 +95,11 @@ bool diagonalCrossed(char board[][SIDE])
 	return(false); 
 } 
 
-// A function that returns true if the game is over 
-// else it returns a false 
 bool gameOver(char board[][SIDE]) 
 { 
 	return(rowCrossed(board) || columnCrossed(board) || diagonalCrossed(board) ); 
 }
 
-// Function to calculate best score
 int minimax(char board[][SIDE], int depth, bool isAI)
 {
 	int score = 0;
@@ -175,7 +165,7 @@ int minimax(char board[][SIDE], int depth, bool isAI)
 	}
 }
 
-// Function to calculate best move
+
 int bestMove(char board[][SIDE], int moveIndex)
 {
 	int x = -1, y = -1;
@@ -201,7 +191,7 @@ int bestMove(char board[][SIDE], int moveIndex)
 	return x*3+y;
 }
 
-// A function to play Tic-Tac-Toe 
+
 void playTicTacToe(int whoseTurn) 
 { 
 	char board[SIDE][SIDE]; 
@@ -257,12 +247,12 @@ void playTicTacToe(int whoseTurn)
 		} 
 	} 
 
-	// If the game has drawn 
+	
 	if (gameOver(board) == false && moveIndex == SIDE * SIDE) 
 		printf("It's a draw\n"); 
 	else
 	{ 
-		// Toggling the user to declare the actual winner 
+		
 		if (whoseTurn == COMPUTER) 
 			whoseTurn = HUMAN; 
 		else if (whoseTurn == HUMAN) 
